@@ -1,0 +1,7 @@
+#include <stdio.h>
+#include "pico/strdlib.h"
+#include "hardware/pwm.h"
+
+int main(void) {
+    return 0;
+}
