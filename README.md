@@ -3,7 +3,8 @@
 ## Build and run
 ```
 # build
-go build
+chmod +x build.sh
+./build.sh
 
 # move to /usr/bin
 sudo mv pico_project_setup /usr/bin
