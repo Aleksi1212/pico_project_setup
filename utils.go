@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"io"
+	"io/fs"
 	"os"
 )
 
@@ -12,15 +13,15 @@ func Check(e error) {
 	}
 }
 
-func FileExists(file_name string) (bool, error) {
-	_, err := os.Stat(file_name)
+func FileExists(file_name string) (fs.FileInfo, bool, error) {
+	info, err := os.Stat(file_name)
 	if err == nil {
-		return true, nil
+		return info, true, nil
 	}
 	if errors.Is(err, os.ErrNotExist) {
-		return false, nil
+		return info, false, nil
 	}
-	return false, err
+	return info, false, err
 }
 
 func CopyFileContents(src, dst string) (err error) {
