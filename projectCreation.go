@@ -25,7 +25,7 @@ func CreateProjectNameFile(project_name string) {
 }
 
 func CreateProjectFile(template_file, dst_file string) {
-	info, exists, err := FileExists(template_file)
+	_, exists, err := FileExists(template_file)
 	Check(err)
 	if !exists {
 		panic("No such file as " + template_file)
@@ -34,17 +34,17 @@ func CreateProjectFile(template_file, dst_file string) {
 	err = CopyFileContents(template_file, dst_file)
 	Check(err)
 
-	if template_file == PROJECT_SH_TEMPLATE_FILE {
-		err = os.Chmod(dst_file, info.Mode()|0111)
-		Check(err)
-	}
+	// if template_file == MAKEFILE_TEMPLATE {
+	// 	err = os.Chmod(dst_file, info.Mode()|0111)
+	// 	Check(err)
+	// }
 
 	fmt.Println("Created " + dst_file)
 }
 
-func CreateSRC() {
+func CreateSRC(clang string) {
 	var src_dir string = "src"
-	var main_c_file string = src_dir + "/main.c"
+	var main_c_file string = src_dir + "/main." + clang
 
 	err := os.Mkdir(src_dir, os.ModePerm)
 	Check(err)

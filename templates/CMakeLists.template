@@ -30,11 +30,12 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 # Add the project source files
-add_executable(${PROJECT_NAME}
-    src/main.c
-
-    # additional source files
+file(GLOB SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
+
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Add include directories
 target_include_directories(${PROJECT_NAME} PRIVATE
