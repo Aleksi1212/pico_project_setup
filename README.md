@@ -30,5 +30,5 @@ chmod +x build.sh
 sudo mv pico_project_setup /usr/bin
 
 # run
-pico_project_setup <project_name>
+pico_project_setup <project_name> <clang>
 ```
